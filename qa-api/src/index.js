@@ -1,8 +1,8 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import helmet from 'helmet';
-import morgan from 'morgan';
+let express= require('express');
+let bodyParser = require('body-parser');
+let cors = require('cors');
+let helmet = require('helmet');
+let morgan = require('morgan');
 
 // express app definition
 const app = express();
