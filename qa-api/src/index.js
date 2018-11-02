@@ -3,6 +3,8 @@ let bodyParser = require('body-parser');
 let cors = require('cors');
 let helmet = require('helmet');
 let morgan = require('morgan');
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 
 // express app definition
 const app = express();
@@ -34,15 +36,29 @@ app.get('/', (request, response) => {
 });
 
 // get single question
-app.get(':/id', (request, response) => {
+app.get('/:id', (request, response) => {
     const question = questions.filter(question => (question.id === parseInt(request.params.id)));
     if (question.length > 1) return response.status(500).send();
     if (question.length === 0) return response.status(404).send();
     response.send(question[0]);
 });
 
+const checkJwt = jwt({
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `https://jnabors.auth0.com/.well-known/jwks.json`
+    }),
+    // validate audience & issuer
+    audience: '29iRhelBpxRTPCwKllhC06gEhhiBUDDY',
+    issuer: `https://jnabors.auth0.com/`,
+    algorithms: ['RS256']
+    
+})
+
 // create new question
-app.post('/', (req, res) => {
+app.post('/', checkJwt, (req, res) => {
     const { title, description } = req.body;
     const newQuestion = {
         id: questions.length + 1,
@@ -55,7 +71,7 @@ app.post('/', (req, res) => {
 });
 
 // add new answer to existing question
-app.post('/answer/:id', (req, res) => {
+app.post('/answer/:id', checkJwt, (req, res) => {
     const { answer } = req.body;
 
     const question = questions.filter(q => (q.id === parseInt(req.params.id)));
