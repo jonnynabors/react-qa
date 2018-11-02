@@ -26,13 +26,15 @@ export class Questions extends Component<{}, State> {
             return (
                 <div className="tile is-vertical is-4">
                     <div className="tile is-parent">
-                        <article className="tile is-child notification is-primary">
-                            <div className="content is-bold" key={index}>
-                                <p className="title">Answers: {question.answers}</p>
-                                <p className="subtitle">{question.title}</p>
-                                <p className="subtitle">{question.description}</p>
-                            </div>
-                        </article>
+                        <Link to={`/question/${question.id}`}>
+                            <article className="tile is-child notification is-primary">
+                                <div className="content is-bold" key={index}>
+                                    <p className="title">Answers: {question.answers}</p>
+                                    <p className="subtitle">{question.title}</p>
+                                    <p className="content">{question.description}</p>
+                                </div>
+                            </article>
+                        </Link>
                     </div>
                 </div>
             );
