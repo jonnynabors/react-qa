@@ -21,20 +21,32 @@ export class Questions extends Component<{}, State> {
         })
     }
 
+
     renderCustomers() {
+        const randomColor = (min: number, max: number) => {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
         return this.state.questions.map((question, index) => {
             return (
                 <div className="tile">
-                    <div className="tile is-parent is-8">
-                        <article className="tile is-child notification is-primary">
-                            <Link to={`/question/${question.id}`}>
+                    <div className="tile is-parent">
+                        <Link to={`/question/${question.id}`}>
+                            <article
+                                style={{
+                                    backgroundColor: `hsla(
+                                ${randomColor(0, 360)},
+                                ${randomColor(25, 100)}%,
+                                ${randomColor(25, 50)}%,
+                                1
+                                )`}}
+                                className="tile is-child notification is-primary">
                                 <div className="is-child" key={index}>
                                     <p className="title has-text-centered">Answers: {question.answers}</p>
                                     <p className="subtitle has-text-centered">{question.title}</p>
                                     <p className="content">{question.description}</p>
                                 </div>
-                            </Link>
-                        </article>
+                            </article>
+                        </Link>
                     </div>
                 </div>
             );

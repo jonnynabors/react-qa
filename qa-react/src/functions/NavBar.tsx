@@ -13,6 +13,7 @@ function NavBar(props: any) {
             <div className="container">
                 <div className="navbar-brand">
                     <Link className="navbar-item" to="/">Q&A App</Link>
+                    <Link className="navbar-item" to="/new-question">Ask a Question!</Link>
                     <span
                         className="navbar-burger burger"
                         data-target="navbarMenuHeroA"
