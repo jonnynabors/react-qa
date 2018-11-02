@@ -17,11 +17,11 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <div className="tile is-ancestor">
-          <Route exact path='/' component={Questions} />
-          <Route exact path='/question/:questionId' component={Question} />
+        <div className="tile is-multiline" style={{ flexWrap: 'wrap' }}>
+            <Route exact path='/' component={Questions} />
         </div>
-        <Route exact path='/callback' component={Callback}/>
+        <Route exact path='/question/:questionId' component={Question} />
+        <Route exact path='/callback' component={Callback} />
         <SecuredRoute path='/new-question' component={NewQuestion} />
       </div>
     );
