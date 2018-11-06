@@ -70,9 +70,35 @@ class NewLearning extends Component<Props, State> {
                                 placeholder="Give more context to your learning goal."
                                 help="Give a short, easy to remember description of this goal."
                             />
+                            <Field
+                                onBlur={(e:any) => console.log(e)}
+                                title="Why"
+                                placeholder="Tell us why you want to learn this skill."
+                            />
+                            <Field
+                                onBlur={(e:any) => console.log(e)}
+                                title="Set goals"
+                                placeholder="Tell us about your goals."
+                                help="Remember to make these specific and actionable!"
+                            />
+                            <Field
+                                onBlur={(e:any) => console.log(e)}
+                                title="Structure your time"
+                                placeholder="How will you acheive this with your current schedule"
+                            />
+                            <Field
+                                onBlur={(e:any) => console.log(e)}
+                                title="Accountability Partner"
+                                placeholder="Who is keeping you accountable to your goals?"
+                            />
+                            <Field
+                                onBlur={(e:any) => console.log(e)}
+                                title="Application"
+                                placeholder="How are you going to apply what you've learned?"
+                            />
                             <button
                                 disabled={this.state.disabled}
-                                className="btn btn-primary"
+                                className="button"
                                 onClick={() => { this.submit() }}>
                                 Submit
                     </button>
