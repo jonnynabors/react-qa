@@ -51,45 +51,48 @@ class NewLearning extends Component<Props, State> {
 
     render() {
         return (
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="card border-primary">
-                  <div className="card-header">New Learning</div>
-                  <div className="card-body text-left">
-                    <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Title:</label>
-                      <input
-                        disabled={this.state.disabled}
-                        type="text"
-                        onBlur={(e) => {this.updateTitle(e.target.value)}}
-                        className="form-control"
-                        placeholder="Give your learning goal a title."
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Description:</label>
-                      <input
-                        disabled={this.state.disabled}
-                        type="text"
-                        onBlur={(e) => {this.updateDescription(e.target.value)}}
-                        className="form-control"
-                        placeholder="Give more context to your learning goal."
-                      />
-                    </div>
-                    <button
-                      disabled={this.state.disabled}
-                      className="btn btn-primary"
-                      onClick={() => {this.submit()}}>
-                      Submit
+            <div className="container">
+                <div className="card">
+                    <header className="card-header">
+                        <p className="card-header-title">New Learning</p>
+                    </header>
+                    <div className="card-content">
+                        <div className="content">
+                            <div className="field">
+                                <label className="label">Title:</label>
+                                <div className="control">
+                                    <input
+                                        disabled={this.state.disabled}
+                                        type="text"
+                                        onBlur={(e) => { this.updateTitle(e.target.value) }}
+                                        className="input is-primary"
+                                        placeholder="Give your learning goal a title."
+                                    />
+                                </div>
+                            </div>
+                            <div className="field">
+                                <label className="label">Description:</label>
+                                <input
+                                    disabled={this.state.disabled}
+                                    type="text"
+                                    onBlur={(e) => { this.updateDescription(e.target.value) }}
+                                    className="input is-primary"
+                                    placeholder="Give more context to your learning goal."
+                                />
+                                <p className="help">Give a short, easy to remember description of this goal.</p>
+                            </div>
+                            <button
+                                disabled={this.state.disabled}
+                                className="btn btn-primary"
+                                onClick={() => { this.submit() }}>
+                                Submit
                     </button>
-                  </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         )
-      }
+    }
 
 }
 
