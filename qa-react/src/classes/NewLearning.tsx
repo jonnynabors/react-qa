@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { getIdToken } from '../Auth';
+import Field from '../functions/Field';
 
 interface Props {
     history: any
@@ -58,29 +59,17 @@ class NewLearning extends Component<Props, State> {
                     </header>
                     <div className="card-content">
                         <div className="content">
-                            <div className="field">
-                                <label className="label">Title:</label>
-                                <div className="control">
-                                    <input
-                                        disabled={this.state.disabled}
-                                        type="text"
-                                        onBlur={(e) => { this.updateTitle(e.target.value) }}
-                                        className="input is-primary"
-                                        placeholder="Give your learning goal a title."
-                                    />
-                                </div>
-                            </div>
-                            <div className="field">
-                                <label className="label">Description:</label>
-                                <input
-                                    disabled={this.state.disabled}
-                                    type="text"
-                                    onBlur={(e) => { this.updateDescription(e.target.value) }}
-                                    className="input is-primary"
-                                    placeholder="Give more context to your learning goal."
-                                />
-                                <p className="help">Give a short, easy to remember description of this goal.</p>
-                            </div>
+                            <Field
+                                onBlur={(e: any) => { this.updateTitle(e.target.value) }}
+                                title="Title"
+                                placeholder="Give your learning goal a title."
+                            />
+                            <Field
+                                onBlur={(e: any) => { this.updateDescription(e.target.value) }}
+                                title="Description"
+                                placeholder="Give more context to your learning goal."
+                                help="Give a short, easy to remember description of this goal."
+                            />
                             <button
                                 disabled={this.state.disabled}
                                 className="btn btn-primary"

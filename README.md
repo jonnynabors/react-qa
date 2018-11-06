@@ -11,3 +11,4 @@ A lightweight React + NodeJS application for creating a customized learning plan
 
 #### Long Term
 * Get this up in AWS
+* Investigate tagging (https://bulma.io/documentation/elements/tag/)
