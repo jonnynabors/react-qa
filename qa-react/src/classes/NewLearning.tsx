@@ -11,7 +11,7 @@ interface State {
     title: string,
     description: string
 }
-class NewQuestion extends Component<Props, State> {
+class NewLearning extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -55,7 +55,7 @@ class NewQuestion extends Component<Props, State> {
             <div className="row">
               <div className="col-12">
                 <div className="card border-primary">
-                  <div className="card-header">New Question</div>
+                  <div className="card-header">New Learning</div>
                   <div className="card-body text-left">
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Title:</label>
@@ -64,7 +64,7 @@ class NewQuestion extends Component<Props, State> {
                         type="text"
                         onBlur={(e) => {this.updateTitle(e.target.value)}}
                         className="form-control"
-                        placeholder="Give your question a title."
+                        placeholder="Give your learning goal a title."
                       />
                     </div>
                     <div className="form-group">
@@ -74,7 +74,7 @@ class NewQuestion extends Component<Props, State> {
                         type="text"
                         onBlur={(e) => {this.updateDescription(e.target.value)}}
                         className="form-control"
-                        placeholder="Give more context to your question."
+                        placeholder="Give more context to your learning goal."
                       />
                     </div>
                     <button
@@ -94,4 +94,4 @@ class NewQuestion extends Component<Props, State> {
 }
 
 // @ts-ignore
-export default withRouter(NewQuestion);
+export default withRouter(NewLearning);

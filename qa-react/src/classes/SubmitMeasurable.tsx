@@ -3,12 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { isAuthenticated } from '../Auth';
 
 interface Props {
-    submitAnswer: Function
+    submitMeasurable: Function
 }
 interface State {
     answer: string
 }
-class SubmitAnswer extends Component<Props, State> {
+class SubmitMeasurable extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -16,14 +16,14 @@ class SubmitAnswer extends Component<Props, State> {
         };
     }
 
-    updateAnswer(answer: string) {
+    updateMeasurable(answer: string) {
         this.setState({
             answer
         });
     }
 
     submit() {
-        this.props.submitAnswer(this.state.answer);
+        this.props.submitMeasurable(this.state.answer);
 
         this.setState({
             answer: '',
@@ -35,10 +35,10 @@ class SubmitAnswer extends Component<Props, State> {
         return (
             <>
                 <div className="form-group text-center">
-                    <label htmlFor="exampleInputEmail1">Answer:</label>
+                    <label htmlFor="exampleInputEmail1">Measurable:</label>
                     <input
                         type="text"
-                        onChange={(e) => { this.updateAnswer(e.target.value) }}
+                        onChange={(e) => { this.updateMeasurable(e.target.value) }}
                         className="form-control"
                         placeholder="Share your answer."
                         value={this.state.answer}
@@ -56,4 +56,4 @@ class SubmitAnswer extends Component<Props, State> {
 }
 
 // @ts-ignore
-export default withRouter(SubmitAnswer);
+export default withRouter(SubmitMeasurable);

@@ -12,8 +12,8 @@ function NavBar(props: any) {
         <nav className="navbar is-primary">
             <div className="container">
                 <div className="navbar-brand">
-                    <Link className="navbar-item" to="/">Q&A App</Link>
-                    <Link className="navbar-item" to="/new-question">Ask a Question!</Link>
+                    <Link className="navbar-item" to="/">Learning Board</Link>
+                    <Link className="navbar-item" to="/new-learning">Create a Learning Goal!</Link>
                     <span
                         className="navbar-burger burger"
                         data-target="navbarMenuHeroA"

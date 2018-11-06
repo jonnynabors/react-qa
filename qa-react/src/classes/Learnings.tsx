@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 interface State {
-    questions: any[]
+    learnings: any[]
 }
-export class Questions extends Component<{}, State> {
+export class Learnings extends Component<{}, State> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            questions: []
+            learnings: []
         }
     }
 
     async componentDidMount() {
-        const questions = (await axios.get('http://localhost:8081/')).data;
+        const learnings = (await axios.get('http://localhost:8081/')).data;
         this.setState({
-            questions
+            learnings
         })
     }
 
@@ -26,11 +26,11 @@ export class Questions extends Component<{}, State> {
         const randomColor = (min: number, max: number) => {
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
-        return this.state.questions.map((question, index) => {
+        return this.state.learnings.map((learning, index) => {
             return (
                 <div className="tile">
                     <div className="tile is-parent">
-                        <Link to={`/question/${question.id}`}>
+                        <Link to={`/learning/${learning.id}`}>
                             <article
                                 style={{
                                     backgroundColor: `hsla(
@@ -41,9 +41,9 @@ export class Questions extends Component<{}, State> {
                                 )`}}
                                 className="tile is-child notification is-primary">
                                 <div className="is-child" key={index}>
-                                    <p className="title has-text-centered">Answers: {question.answers}</p>
-                                    <p className="subtitle has-text-centered">{question.title}</p>
-                                    <p className="content">{question.description}</p>
+                                    <p className="title has-text-centered">Measurables: {learning.measurables}</p>
+                                    <p className="subtitle has-text-centered">{learning.title}</p>
+                                    <p className="content">{learning.description}</p>
                                 </div>
                             </article>
                         </Link>

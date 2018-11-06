@@ -10,7 +10,7 @@ const jwksRsa = require('jwks-rsa');
 const app = express();
 
 // database
-const questions = [];
+const learnings = [];
 
 // app security
 app.use(helmet());
@@ -24,23 +24,23 @@ app.use(cors());
 // log http requests
 app.use(morgan('combined'));
 
-// fetch questions
+// fetch learnings
 app.get('/', (request, response) => {
-    const qs = questions.map(question => ({
-        id: question.id,
-        title: question.title,
-        description: question.description,
-        answers: question.answers.length,
+    const qs = learnings.map(learning => ({
+        id: learning.id,
+        title: learning.title,
+        description: learning.description,
+        measurables: learning.measurables.length,
     }));
     response.send(qs);
 });
 
-// get single question
+// get single learning
 app.get('/:id', (request, response) => {
-    const question = questions.filter(question => (question.id === parseInt(request.params.id)));
-    if (question.length > 1) return response.status(500).send();
-    if (question.length === 0) return response.status(404).send();
-    response.send(question[0]);
+    const learning = learnings.filter(learning => (learning.id === parseInt(request.params.id)));
+    if (learning.length > 1) return response.status(500).send();
+    if (learning.length === 0) return response.status(404).send();
+    response.send(learning[0]);
 });
 
 const checkJwt = jwt({
@@ -57,29 +57,29 @@ const checkJwt = jwt({
     
 })
 
-// create new question
+// create new learning
 app.post('/', checkJwt, (req, res) => {
     const { title, description } = req.body;
-    const newQuestion = {
-        id: questions.length + 1,
+    const newLearning = {
+        id: learnings.length + 1,
         title,
         description,
-        answers: [],
+        measurables: [],
     };
-    questions.push(newQuestion);
+    learnings.push(newLearning);
     res.status(200).send();
 });
 
-// add new answer to existing question
-app.post('/answer/:id', checkJwt, (req, res) => {
-    const { answer } = req.body;
+// add new measurable to existing learning goal
+app.post('/measurable/:id', checkJwt, (req, res) => {
+    const { measurable } = req.body;
 
-    const question = questions.filter(q => (q.id === parseInt(req.params.id)));
-    if (question.length > 1) return res.status(500).send();
-    if (question.length === 0) return res.status(404).send();
+    const learning = learnings.filter(q => (q.id === parseInt(req.params.id)));
+    if (learning.length > 1) return res.status(500).send();
+    if (learning.length === 0) return res.status(404).send();
 
-    question[0].answers.push({
-        answer,
+    learning[0].measurables.push({
+        measurable,
     });
 
     res.status(200).send();

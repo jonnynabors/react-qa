@@ -37,8 +37,11 @@ export function getIdToken() {
 }
 
 export function isAuthenticated() {
-    // @ts-ignore
-    return new Date().getTime() < localStorage.getItem('expires_at');
+    const expirationTime = localStorage.getItem('expires_at');
+    if(expirationTime){
+        return new Date().getTime() < +expirationTime;
+    }
+    return false;
 }
 
 export function signIn() {
